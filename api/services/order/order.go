@@ -8,6 +8,8 @@ import (
 type Svc struct {
 	order.UnimplementedOrderServiceServer
 	adminOrg string
+	// OrderStatusMap represents the in-memory order status map
+	orderStatusMap map[string]*order.Order
 }
 
 // RegisterService with grpc server.
@@ -16,6 +18,6 @@ func (h *Svc) RegisterOrderService(srv *grpc.Server) error {
 	return nil
 }
 
-func New(adminOrg string) *Svc {
-	return &Svc{adminOrg: adminOrg}
+func New(adminOrg string, orderStatusMap map[string]*order.Order) *Svc {
+	return &Svc{adminOrg: adminOrg, orderStatusMap: orderStatusMap}
 }

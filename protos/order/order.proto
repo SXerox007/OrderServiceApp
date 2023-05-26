@@ -34,6 +34,15 @@ message UpdateOrderStatusRequest {
   string status = 2;
 }
 
+message GetOrderByStatusRequest {
+  string status = 1;
+}
+
+message GetOrderByIdRequest {
+  string orderId = 1;
+}
+
+
 service OrderService {
   rpc PlaceOrder(PlaceOrderRequest) returns (PlaceOrderResponse){
      option (google.api.http) = {
@@ -41,14 +50,26 @@ service OrderService {
             body: "*"
 		};
   };
-  rpc GetOrderStatus (google.protobuf.Empty) returns (OrderStatus){
+  rpc GetOrderByStatus (GetOrderByStatusRequest) returns (OrderStatus){
+     option (google.api.http) = {
+            post: "/v1/order/with-status"
+            body: "*"
+		};
+  };
+  rpc GetOrderById (GetOrderByIdRequest) returns (Order){
+     option (google.api.http) = {
+          post: "/v1/order/with-id"
+          body: "*"
+		};
+  };
+  rpc GetAllOrder (google.protobuf.Empty) returns (OrderStatus){
      option (google.api.http) = {
             get: "/v1/order"
 		};
   };
   rpc UpdateOrderStatus (UpdateOrderStatusRequest) returns (Order){
         option (google.api.http) = {
-            post: "/v1/order/update-details"
+            post: "/v1/order/update-status"
             body: "*"
 		};
   };

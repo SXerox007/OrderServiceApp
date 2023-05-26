@@ -8,3 +8,11 @@ const (
 	ERR_MSG_INTERNAL_SERVER      = "Internal Server Error:"
 	ERR_MSG_INVALID_ACCESS_TOKEN = "Invalid Access Token"
 )
+
+// order constant
+const (
+	ORDER_PLACED     = "Placed"
+	ORDER_DISPATCHED = "Dispatched"
+	ORDER_COMPLETED  = "Completed"
+	ORDER_CANCELLED  = "Cancelled"
+)

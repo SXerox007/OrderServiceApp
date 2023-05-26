@@ -20,7 +20,9 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OrderServiceClient interface {
 	PlaceOrder(ctx context.Context, in *PlaceOrderRequest, opts ...grpc.CallOption) (*PlaceOrderResponse, error)
-	GetOrderStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*OrderStatus, error)
+	GetOrderByStatus(ctx context.Context, in *GetOrderByStatusRequest, opts ...grpc.CallOption) (*OrderStatus, error)
+	GetOrderById(ctx context.Context, in *GetOrderByIdRequest, opts ...grpc.CallOption) (*Order, error)
+	GetAllOrder(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*OrderStatus, error)
 	UpdateOrderStatus(ctx context.Context, in *UpdateOrderStatusRequest, opts ...grpc.CallOption) (*Order, error)
 }
 
@@ -41,9 +43,27 @@ func (c *orderServiceClient) PlaceOrder(ctx context.Context, in *PlaceOrderReque
 	return out, nil
 }
 
-func (c *orderServiceClient) GetOrderStatus(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*OrderStatus, error) {
+func (c *orderServiceClient) GetOrderByStatus(ctx context.Context, in *GetOrderByStatusRequest, opts ...grpc.CallOption) (*OrderStatus, error) {
 	out := new(OrderStatus)
-	err := c.cc.Invoke(ctx, "/orderpb.OrderService/GetOrderStatus", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/orderpb.OrderService/GetOrderByStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderServiceClient) GetOrderById(ctx context.Context, in *GetOrderByIdRequest, opts ...grpc.CallOption) (*Order, error) {
+	out := new(Order)
+	err := c.cc.Invoke(ctx, "/orderpb.OrderService/GetOrderById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderServiceClient) GetAllOrder(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*OrderStatus, error) {
+	out := new(OrderStatus)
+	err := c.cc.Invoke(ctx, "/orderpb.OrderService/GetAllOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +84,9 @@ func (c *orderServiceClient) UpdateOrderStatus(ctx context.Context, in *UpdateOr
 // for forward compatibility
 type OrderServiceServer interface {
 	PlaceOrder(context.Context, *PlaceOrderRequest) (*PlaceOrderResponse, error)
-	GetOrderStatus(context.Context, *emptypb.Empty) (*OrderStatus, error)
+	GetOrderByStatus(context.Context, *GetOrderByStatusRequest) (*OrderStatus, error)
+	GetOrderById(context.Context, *GetOrderByIdRequest) (*Order, error)
+	GetAllOrder(context.Context, *emptypb.Empty) (*OrderStatus, error)
 	UpdateOrderStatus(context.Context, *UpdateOrderStatusRequest) (*Order, error)
 	mustEmbedUnimplementedOrderServiceServer()
 }
@@ -76,8 +98,14 @@ type UnimplementedOrderServiceServer struct {
 func (UnimplementedOrderServiceServer) PlaceOrder(context.Context, *PlaceOrderRequest) (*PlaceOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlaceOrder not implemented")
 }
-func (UnimplementedOrderServiceServer) GetOrderStatus(context.Context, *emptypb.Empty) (*OrderStatus, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrderStatus not implemented")
+func (UnimplementedOrderServiceServer) GetOrderByStatus(context.Context, *GetOrderByStatusRequest) (*OrderStatus, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByStatus not implemented")
+}
+func (UnimplementedOrderServiceServer) GetOrderById(context.Context, *GetOrderByIdRequest) (*Order, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrderById not implemented")
+}
+func (UnimplementedOrderServiceServer) GetAllOrder(context.Context, *emptypb.Empty) (*OrderStatus, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAllOrder not implemented")
 }
 func (UnimplementedOrderServiceServer) UpdateOrderStatus(context.Context, *UpdateOrderStatusRequest) (*Order, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrderStatus not implemented")
@@ -113,20 +141,56 @@ func _OrderService_PlaceOrder_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OrderService_GetOrderStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OrderService_GetOrderByStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderByStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetOrderByStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/orderpb.OrderService/GetOrderByStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetOrderByStatus(ctx, req.(*GetOrderByStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderService_GetOrderById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetOrderById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/orderpb.OrderService/GetOrderById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetOrderById(ctx, req.(*GetOrderByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderService_GetAllOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OrderServiceServer).GetOrderStatus(ctx, in)
+		return srv.(OrderServiceServer).GetAllOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/orderpb.OrderService/GetOrderStatus",
+		FullMethod: "/orderpb.OrderService/GetAllOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderServiceServer).GetOrderStatus(ctx, req.(*emptypb.Empty))
+		return srv.(OrderServiceServer).GetAllOrder(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -161,8 +225,16 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrderService_PlaceOrder_Handler,
 		},
 		{
-			MethodName: "GetOrderStatus",
-			Handler:    _OrderService_GetOrderStatus_Handler,
+			MethodName: "GetOrderByStatus",
+			Handler:    _OrderService_GetOrderByStatus_Handler,
+		},
+		{
+			MethodName: "GetOrderById",
+			Handler:    _OrderService_GetOrderById_Handler,
+		},
+		{
+			MethodName: "GetAllOrder",
+			Handler:    _OrderService_GetAllOrder_Handler,
 		},
 		{
 			MethodName: "UpdateOrderStatus",

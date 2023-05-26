@@ -13,7 +13,7 @@
   "paths": {
     "/v1/order": {
       "get": {
-        "operationId": "OrderService_GetOrderStatus",
+        "operationId": "OrderService_GetAllOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -65,7 +65,7 @@
         ]
       }
     },
-    "/v1/order/update-details": {
+    "/v1/order/update-status": {
       "post": {
         "operationId": "OrderService_UpdateOrderStatus",
         "responses": {
@@ -96,9 +96,89 @@
           "OrderService"
         ]
       }
+    },
+    "/v1/order/with-id": {
+      "post": {
+        "operationId": "OrderService_GetOrderById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderpbOrder"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderpbGetOrderByIdRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
+    "/v1/order/with-status": {
+      "post": {
+        "operationId": "OrderService_GetOrderByStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderpbOrderStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderpbGetOrderByStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
     }
   },
   "definitions": {
+    "orderpbGetOrderByIdRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        }
+      }
+    },
+    "orderpbGetOrderByStatusRequest": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
     "orderpbOrder": {
       "type": "object",
       "properties": {
