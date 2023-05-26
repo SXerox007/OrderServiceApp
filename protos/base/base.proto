@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package basepb;
+
+option go_package = "github.com/SXerox007/OrderServiceApp/protos/base";
+
+message BaseResponse {
+  string code = 1;
+  string message = 2;
+}
