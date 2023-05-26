@@ -8,8 +8,10 @@ import (
 	"os/signal"
 
 	so "github.com/SXerox007/OrderServiceApp/api/services/order"
+	sp "github.com/SXerox007/OrderServiceApp/api/services/product"
 	"github.com/SXerox007/OrderServiceApp/base/server"
 	"github.com/SXerox007/OrderServiceApp/protos/order"
+	"github.com/SXerox007/OrderServiceApp/protos/product"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -54,4 +56,6 @@ func setupServices(srv *grpc.Server) {
 	osc := so.New("ADMIN_JOSH", make(map[string]*order.Order))
 	osc.RegisterOrderService(srv)
 
+	psc := sp.New("ADMIN_JOSH", make(map[string]*product.Product))
+	psc.RegisterProductService(srv)
 }

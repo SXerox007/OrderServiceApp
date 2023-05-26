@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/SXerox007/OrderServiceApp/protos/order"
+	"github.com/SXerox007/OrderServiceApp/protos/product"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"google.golang.org/grpc"
 )
@@ -25,6 +26,7 @@ func ExposePoint(address string, opts ...runtime.ServeMuxOption) error {
 
 	// RegisterGateway grpcgw
 	err := order.RegisterOrderServiceHandlerFromEndpoint(ctx, mux, *authpoint, dialOpts)
+	err = product.RegisterProductServiceHandlerFromEndpoint(ctx, mux, *authpoint, dialOpts)
 
 	if err != nil {
 		return err

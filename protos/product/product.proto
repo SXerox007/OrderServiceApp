@@ -29,7 +29,8 @@ message GetProductResponse {
 service ProductService {
   rpc GetProduct(GetProductRequest) returns (GetProductResponse){
      option (google.api.http) = {
-            get: "/v1/product"
+            post: "/v1/product"
+            body: "*"
 		};
   };
   rpc GetProductCatalogue (google.protobuf.Empty) returns (ProductCatalogue){

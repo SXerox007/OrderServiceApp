@@ -12,7 +12,7 @@
   ],
   "paths": {
     "/v1/product": {
-      "get": {
+      "post": {
         "operationId": "ProductService_GetProduct",
         "responses": {
           "200": {
@@ -30,10 +30,12 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productpbGetProductRequest"
+            }
           }
         ],
         "tags": [
@@ -97,6 +99,14 @@
     }
   },
   "definitions": {
+    "productpbGetProductRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
     "productpbGetProductResponse": {
       "type": "object",
       "properties": {
