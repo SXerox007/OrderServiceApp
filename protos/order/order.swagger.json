@@ -11,6 +11,28 @@
     "application/json"
   ],
   "paths": {
+    "/v1/order": {
+      "get": {
+        "operationId": "OrderService_GetOrderStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderpbOrderStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
     "/v1/order/place": {
       "post": {
         "operationId": "OrderService_PlaceOrder",
@@ -18,7 +40,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/protoPlaceOrderResponse"
+              "$ref": "#/definitions/orderpbPlaceOrderResponse"
             }
           },
           "default": {
@@ -34,7 +56,39 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/protoPlaceOrderRequest"
+              "$ref": "#/definitions/orderpbPlaceOrderRequest"
+            }
+          }
+        ],
+        "tags": [
+          "OrderService"
+        ]
+      }
+    },
+    "/v1/order/update-details": {
+      "post": {
+        "operationId": "OrderService_UpdateOrderStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderpbOrder"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderpbUpdateOrderStatusRequest"
             }
           }
         ],
@@ -45,7 +99,7 @@
     }
   },
   "definitions": {
-    "protoOrder": {
+    "orderpbOrder": {
       "type": "object",
       "properties": {
         "id": {
@@ -70,7 +124,18 @@
         }
       }
     },
-    "protoPlaceOrderRequest": {
+    "orderpbOrderStatus": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderpbOrder"
+          }
+        }
+      }
+    },
+    "orderpbPlaceOrderRequest": {
       "type": "object",
       "properties": {
         "productId": {
@@ -82,11 +147,22 @@
         }
       }
     },
-    "protoPlaceOrderResponse": {
+    "orderpbPlaceOrderResponse": {
       "type": "object",
       "properties": {
         "order": {
-          "$ref": "#/definitions/protoOrder"
+          "$ref": "#/definitions/orderpbOrder"
+        }
+      }
+    },
+    "orderpbUpdateOrderStatusRequest": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
         }
       }
     },

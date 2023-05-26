@@ -4,11 +4,8 @@ package productpb;
 
 option go_package = "github.com/SXerox007/OrderServiceApp/protos/product";
 
-import (
-  "google/api/annotations.proto"
-  "google/protobuf/empty.proto"
-  "github.com/SXerox007/OrderServiceApp/protos/base"
-)
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 message Product {
   string id = 1;
@@ -40,7 +37,7 @@ service ProductService {
             get: "/v1/product-catalogue"
 		};
   };
-  rpc UpdateProduct(Product) returns (base.BaseResponse){
+  rpc UpdateProduct(Product) returns (Product){
         option (google.api.http) = {
             post: "/v1/product/update-details"
             body: "*"

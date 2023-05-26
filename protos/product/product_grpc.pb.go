@@ -7,6 +7,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProductServiceClient interface {
 	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error)
+	GetProductCatalogue(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductCatalogue, error)
+	UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Product, error)
 }
 
 type productServiceClient struct {
@@ -31,7 +34,25 @@ func NewProductServiceClient(cc grpc.ClientConnInterface) ProductServiceClient {
 
 func (c *productServiceClient) GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error) {
 	out := new(GetProductResponse)
-	err := c.cc.Invoke(ctx, "/product.ProductService/GetProduct", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/productpb.ProductService/GetProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) GetProductCatalogue(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ProductCatalogue, error) {
+	out := new(ProductCatalogue)
+	err := c.cc.Invoke(ctx, "/productpb.ProductService/GetProductCatalogue", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *productServiceClient) UpdateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Product, error) {
+	out := new(Product)
+	err := c.cc.Invoke(ctx, "/productpb.ProductService/UpdateProduct", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -43,6 +64,8 @@ func (c *productServiceClient) GetProduct(ctx context.Context, in *GetProductReq
 // for forward compatibility
 type ProductServiceServer interface {
 	GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error)
+	GetProductCatalogue(context.Context, *emptypb.Empty) (*ProductCatalogue, error)
+	UpdateProduct(context.Context, *Product) (*Product, error)
 	mustEmbedUnimplementedProductServiceServer()
 }
 
@@ -52,6 +75,12 @@ type UnimplementedProductServiceServer struct {
 
 func (UnimplementedProductServiceServer) GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProduct not implemented")
+}
+func (UnimplementedProductServiceServer) GetProductCatalogue(context.Context, *emptypb.Empty) (*ProductCatalogue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProductCatalogue not implemented")
+}
+func (UnimplementedProductServiceServer) UpdateProduct(context.Context, *Product) (*Product, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
 func (UnimplementedProductServiceServer) mustEmbedUnimplementedProductServiceServer() {}
 
@@ -76,10 +105,46 @@ func _ProductService_GetProduct_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/product.ProductService/GetProduct",
+		FullMethod: "/productpb.ProductService/GetProduct",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProductServiceServer).GetProduct(ctx, req.(*GetProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_GetProductCatalogue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).GetProductCatalogue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/productpb.ProductService/GetProductCatalogue",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).GetProductCatalogue(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProductService_UpdateProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Product)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).UpdateProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/productpb.ProductService/UpdateProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).UpdateProduct(ctx, req.(*Product))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -88,12 +153,20 @@ func _ProductService_GetProduct_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProductService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "product.ProductService",
+	ServiceName: "productpb.ProductService",
 	HandlerType: (*ProductServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetProduct",
 			Handler:    _ProductService_GetProduct_Handler,
+		},
+		{
+			MethodName: "GetProductCatalogue",
+			Handler:    _ProductService_GetProductCatalogue_Handler,
+		},
+		{
+			MethodName: "UpdateProduct",
+			Handler:    _ProductService_UpdateProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

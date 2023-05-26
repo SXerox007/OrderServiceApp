@@ -1,16 +1,14 @@
 package main
 
 import (
-	"OSlash/api/admin"
-	"OSlash/api/onboarding/register"
-	"OSlash/api/user"
-	"OSlash/base/server"
 	"fmt"
 	"log"
 	"net"
 	"os"
 	"os/signal"
 
+	"github.com/SXerox007/OrderServiceApp/api/services/order"
+	"github.com/SXerox007/OrderServiceApp/base/server"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -31,7 +29,7 @@ func ServerSetup() {
 	//Register reflection on gRPC server
 	reflection.Register(srv)
 	// all the rpc services
-	rpcServices(srv)
+	setupServices(srv)
 
 	go func() {
 		fmt.Println("Server start on Port:50051")
@@ -50,11 +48,9 @@ func ServerSetup() {
 }
 
 // All the services
-func rpcServices(srv *grpc.Server) {
-	//Register the User (on the base of role ADMIN/USER/SUPER-ADMIN)
-	register.RegisterUserService(srv)
-	// users
-	user.RegisterTweetService(srv)
-	// admin servies
-	admin.RegisterAdminService(srv)
+func setupServices(srv *grpc.Server) {
+
+	order := order.New("ADMIN_JOSH")
+	order.RegisterOrderService(srv)
+
 }

@@ -18,7 +18,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/productGetProductResponse"
+              "$ref": "#/definitions/productpbGetProductResponse"
             }
           },
           "default": {
@@ -40,18 +40,72 @@
           "ProductService"
         ]
       }
+    },
+    "/v1/product-catalogue": {
+      "get": {
+        "operationId": "ProductService_GetProductCatalogue",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productpbProductCatalogue"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "ProductService"
+        ]
+      }
+    },
+    "/v1/product/update-details": {
+      "post": {
+        "operationId": "ProductService_UpdateProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productpbProduct"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productpbProduct"
+            }
+          }
+        ],
+        "tags": [
+          "ProductService"
+        ]
+      }
     }
   },
   "definitions": {
-    "productGetProductResponse": {
+    "productpbGetProductResponse": {
       "type": "object",
       "properties": {
         "product": {
-          "$ref": "#/definitions/productProduct"
+          "$ref": "#/definitions/productpbProduct"
         }
       }
     },
-    "productProduct": {
+    "productpbProduct": {
       "type": "object",
       "properties": {
         "id": {
@@ -66,6 +120,17 @@
         "price": {
           "type": "number",
           "format": "double"
+        }
+      }
+    },
+    "productpbProductCatalogue": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/productpbProduct"
+          }
         }
       }
     },
