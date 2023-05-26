@@ -49,6 +49,7 @@ func validate(req *product.Product) error {
 			validation.In(constants.PREMIUM, constants.BUDGET, constants.REGULAR).
 				Error("invalid or unsupported category")),
 		validation.Field(&req.Price, validation.Required, is.Int),
+		validation.Field(&req.Quantity, validation.Required, is.Int),
 	); err != nil {
 		log.Println("Error:", err)
 		return status.Error(codes.InvalidArgument, err.Error())

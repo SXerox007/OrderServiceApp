@@ -12,6 +12,7 @@ message Product {
   string name = 2;
   string category = 3;
   int32 price = 4;
+  int32 quantity = 5;
 }
 
 message GetProductRequest {

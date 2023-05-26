@@ -196,11 +196,15 @@
           "type": "string"
         },
         "orderValue": {
-          "type": "number",
-          "format": "double"
+          "type": "integer",
+          "format": "int32"
         },
         "dispatchDate": {
           "type": "string"
+        },
+        "discount": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -215,7 +219,7 @@
         }
       }
     },
-    "orderpbPlaceOrderRequest": {
+    "orderpbPlaceOrder": {
       "type": "object",
       "properties": {
         "productId": {
@@ -227,11 +231,25 @@
         }
       }
     },
+    "orderpbPlaceOrderRequest": {
+      "type": "object",
+      "properties": {
+        "placeOrder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderpbPlaceOrder"
+          }
+        }
+      }
+    },
     "orderpbPlaceOrderResponse": {
       "type": "object",
       "properties": {
-        "order": {
-          "$ref": "#/definitions/orderpbOrder"
+        "orders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderpbOrder"
+          }
         }
       }
     },

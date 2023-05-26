@@ -7,6 +7,9 @@ const (
 	MSG_SOMETING_WENT_WRONG      = "Something Went Wrong"
 	ERR_MSG_INTERNAL_SERVER      = "Internal Server Error:"
 	ERR_MSG_INVALID_ACCESS_TOKEN = "Invalid Access Token"
+	MAX_QUANTITY                 = 10
+	DiscountedProductCount       = 3
+	DiscountPercentage           = 10
 )
 
 // order constant

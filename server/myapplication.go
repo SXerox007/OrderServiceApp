@@ -53,9 +53,9 @@ func ServerSetup() {
 // All the services
 func setupServices(srv *grpc.Server) {
 
-	osc := so.New("ADMIN_JOSH", make(map[string]*order.Order))
-	osc.RegisterOrderService(srv)
-
 	psc := sp.New("ADMIN_JOSH", make(map[string]*product.Product))
 	psc.RegisterProductService(srv)
+
+	osc := so.New("ADMIN_JOSH", make(map[string]*order.Order), psc)
+	osc.RegisterOrderService(srv)
 }
