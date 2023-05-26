@@ -16,3 +16,10 @@ const (
 	ORDER_COMPLETED  = "Completed"
 	ORDER_CANCELLED  = "Cancelled"
 )
+
+//product constant
+const (
+	PREMIUM = "Premium"
+	REGULAR = "Regular"
+	BUDGET  = "Budget"
+)
