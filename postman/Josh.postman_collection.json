@@ -1,0 +1,894 @@
+{
+	"info": {
+		"_postman_id": "91b7d4f6-a8ea-4cf5-8525-80265c51be16",
+		"name": "Josh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25636315"
+	},
+	"item": [
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Place/Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": \"A342\",\n    \"quantity\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/order/place",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"order",
+								"place"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\": \"A342\",\n    \"quantity\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/order/place",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order",
+										"place"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:30:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"order\": {\n        \"id\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n        \"productId\": \"A342\",\n        \"quantity\": 2,\n        \"status\": \"Placed\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5051/v1/order",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5051/v1/order",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:30:41 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orders\": [\n        {\n            \"id\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n            \"productId\": \"A342\",\n            \"quantity\": 2,\n            \"status\": \"Placed\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order By Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"Placed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/order/with-status",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"order",
+								"with-status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\":\"Placed\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/order/with-status",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order",
+										"with-status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:30:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orders\": [\n        {\n            \"id\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n            \"productId\": \"A342\",\n            \"quantity\": 2,\n            \"status\": \"Placed\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Failed 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\":\"Placedf\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/order/with-status",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order",
+										"with-status"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:32:07 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"order not found\",\n    \"code\": 5,\n    \"message\": \"order not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order By OrderID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\":\"29XEVwW20WaBu34ufQ&Iu&AR2S&lEibd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/order/with-id",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"order",
+								"with-id"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderId\":\"29XEVwW20WaBu34ufQ&Iu&AR2S&lEibd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/order/with-id",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order",
+										"with-id"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:30:55 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n    \"productId\": \"A342\",\n    \"quantity\": 2,\n    \"status\": \"Placed\"\n}"
+						},
+						{
+							"name": "Failed 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderId\":\"29XEVwW20WaBu34ufQ&Iu&AR2S&lEibdp\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/order/with-id",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order",
+										"with-id"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:32:31 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"order id not found\",\n    \"code\": 5,\n    \"message\": \"order id not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orderId\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n    \"status\": \"Dispatched\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/order/update-status",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"order",
+								"update-status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderId\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n    \"status\": \"Dispatched\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/order/update-status",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"order",
+										"update-status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 09:33:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n    \"productId\": \"A342\",\n    \"quantity\": 2,\n    \"status\": \"Dispatched\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/product",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/product",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"product"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 10:57:50 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"product not found\",\n    \"code\": 5,\n    \"message\": \"product not found\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\":\"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/product",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 10:58:07 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"product\": {\n        \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\",\n        \"name\": \"tea\",\n        \"category\": \"Regular\",\n        \"price\": 1000\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"\",\n    \"name\": \"tea\",\n    \"category\": \"Regular\",\n    \"price\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/product/add",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"product",
+								"add"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"\",\n    \"name\": \"tea\",\n    \"category\": \"Regular\",\n    \"price\": 1000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/product/add",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"product",
+										"add"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 10:57:14 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"product\": {\n        \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\",\n        \"name\": \"tea\",\n        \"category\": \"Regular\",\n        \"price\": 1000\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product Catalogue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5051/v1/product-catalogue",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"product-catalogue"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:5051/v1/product-catalogue",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"product-catalogue"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 11:00:16 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"products\": [\n        {\n            \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\",\n            \"name\": \"tea\",\n            \"category\": \"Regular\",\n            \"price\": 1000\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\",\n    \"name\": \"tea2.0\",\n    \"category\": \"Regular\",\n    \"price\": 1200\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5051/v1/product/update-details",
+							"host": [
+								"localhost"
+							],
+							"port": "5051",
+							"path": [
+								"v1",
+								"product",
+								"update-details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\",\n    \"name\": \"tea2.0\",\n    \"category\": \"Regular\",\n    \"price\": 1200\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/product/update-details",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"product",
+										"update-details"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Grpc-Metadata-Content-Type",
+									"value": "application/grpc"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 11:03:00 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagy\",\n    \"name\": \"tea2.0\",\n    \"category\": \"Regular\",\n    \"price\": 1200\n}"
+						},
+						{
+							"name": "Error 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"KaeN0BE318HmRqcZsOqt4T1gDQfaFagyp\",\n    \"name\": \"tea2.0\",\n    \"category\": \"Regular\",\n    \"price\": 1200\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5051/v1/product/update-details",
+									"host": [
+										"localhost"
+									],
+									"port": "5051",
+									"path": [
+										"v1",
+										"product",
+										"update-details"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 May 2023 11:03:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"product id not found\",\n    \"code\": 5,\n    \"message\": \"product id not found\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
