@@ -3,6 +3,7 @@ package order
 import (
 	"context"
 	"log"
+	"time"
 
 	"github.com/SXerox007/OrderServiceApp/constants"
 	"github.com/SXerox007/OrderServiceApp/protos/order"
@@ -17,6 +18,7 @@ func (s *Svc) UpdateOrderStatus(ctx context.Context, req *order.UpdateOrderStatu
 	}
 	isUpdated := false
 	var result *order.Order
+
 	for _, item := range s.orderStatusMap {
 		if item.Id == req.OrderId {
 			// do update
@@ -26,6 +28,9 @@ func (s *Svc) UpdateOrderStatus(ctx context.Context, req *order.UpdateOrderStatu
 				ProductId: item.GetProductId(),
 				Quantity:  item.GetQuantity(),
 				Status:    req.GetStatus(),
+			}
+			if req.Status == constants.ORDER_DISPATCHED {
+				result.DispatchDate = time.Now().GoString()
 			}
 			s.orderStatusMap[item.Id] = result
 		}

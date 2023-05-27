@@ -1,0 +1,60 @@
+# Contributing Guidelines
+
+Thank you for considering contributing to this project! We appreciate your interest and support. To ensure a smooth collaboration, please review and follow these guidelines when making contributions.
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Contributing Process](#contributing-process)
+- [Code Style and Guidelines](#code-style-and-guidelines)
+- [Bug Reports and Feature Requests](#bug-reports-and-feature-requests)
+- [Submitting Pull Requests](#submitting-pull-requests)
+- [License](#license)
+
+## Getting Started
+
+To get started with contributing to this project, follow these steps:
+
+1. Fork the repository.
+2. Clone the forked repository to your local machine.
+3. Install any necessary dependencies.
+4. Make your changes or additions.
+5. Test your changes to ensure they work as intended.
+6. Commit your changes with clear and descriptive messages.
+7. Push your changes to your forked repository.
+8. Submit a pull request to the main repository.
+
+## Contributing Process
+
+- **Bug Fixes:** If you find a bug, please submit an issue describing the problem. Feel free to propose a fix by creating a pull request.
+- **Feature Requests:** If you have a new feature idea or enhancement suggestion, please submit an issue outlining your proposal before starting any implementation work.
+- **Documentation:** Improvements to the documentation are always welcome. If you find any errors or have suggestions, please submit a pull request.
+
+## Code Style and Guidelines
+
+- Follow the existing code style and conventions used in the project.
+- Write clear, concise, and self-explanatory code with appropriate comments.
+- Write meaningful commit messages and provide detailed pull request descriptions.
+
+## Bug Reports and Feature Requests
+
+If you encounter any bugs or have ideas for new features, please submit an issue in the issue tracker. Include as much detail as possible, such as steps to reproduce the bug or a clear description of the proposed feature.
+
+## Submitting Pull Requests
+
+When submitting a pull request, please follow these guidelines:
+
+- Fork the repository and create a new branch for your feature or bug fix.
+- Ensure that your branch is up to date with the latest changes from the main repository.
+- Make sure your code passes all tests and linting checks.
+- Include tests to cover your changes if applicable.
+- Provide a clear and descriptive pull request title and description.
+- Reference any related issues in the pull request description using the issue number (e.g., "Fixes #123").
+
+## License
+
+By contributing to this project, you agree that your contributions will be licensed under the [project's license](LICENSE).
+
+---
+
+We welcome contributions from everyone and appreciate your help in making this project better. Thank you for your support!
