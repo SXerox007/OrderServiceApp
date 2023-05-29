@@ -8,7 +8,6 @@ import (
 	"github.com/SXerox007/OrderServiceApp/protos/product"
 	"github.com/SXerox007/OrderServiceApp/utils/random"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
-	is "github.com/go-ozzo/ozzo-validation/v4/is"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -30,6 +29,7 @@ func (s *Svc) AddProduct(ctx context.Context, req *product.Product) (*product.Ge
 		Name:     req.Name,
 		Category: req.Category,
 		Price:    req.Price, // in paise
+		Quantity: req.Quantity,
 	}
 	s.productMap[orderId] = productDetails
 
@@ -48,8 +48,8 @@ func validate(req *product.Product) error {
 		validation.Field(&req.Category,
 			validation.In(constants.PREMIUM, constants.BUDGET, constants.REGULAR).
 				Error("invalid or unsupported category")),
-		validation.Field(&req.Price, validation.Required, is.Int),
-		validation.Field(&req.Quantity, validation.Required, is.Int),
+		validation.Field(&req.Price, validation.Required),
+		validation.Field(&req.Quantity, validation.Required),
 	); err != nil {
 		log.Println("Error:", err)
 		return status.Error(codes.InvalidArgument, err.Error())

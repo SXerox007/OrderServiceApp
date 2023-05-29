@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"productId\": \"A342\",\n    \"quantity\": 2\n}",
+							"raw": "{\n    \"placeOrder\": [\n        {\n            \"productId\": \"xDS4hP7UWjfTE@Jk5aVXWQYROg8YWRJU\",\n            \"quantity\": 5\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -286,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"orderId\":\"29XEVwW20WaBu34ufQ&Iu&AR2S&lEibd\"\n}",
+							"raw": "{\n    \"orderId\":\"#sTJqZcP#eGxkK69QPjKBibDhVCaQFW4\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,7 +414,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"orderId\": \"mLEPAGmeKdIILa0UMWzvFnRFixY6MfzI\",\n    \"status\": \"Dispatched\"\n}",
+							"raw": "{\n    \"orderId\": \"#sTJqZcP#eGxkK69QPjKBibDhVCaQFW4\",\n    \"status\": \"Dispatched\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -625,7 +625,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"\",\n    \"name\": \"tea\",\n    \"category\": \"Regular\",\n    \"price\": 1000\n}",
+							"raw": "{\n    \"id\": \"\",\n    \"name\": \"tea\",\n    \"category\": \"Regular\",\n    \"price\": 1000,\n    \"quantity\":20\n}",
 							"options": {
 								"raw": {
 									"language": "json"

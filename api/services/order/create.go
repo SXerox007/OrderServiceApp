@@ -9,7 +9,6 @@ import (
 	"github.com/SXerox007/OrderServiceApp/protos/product"
 	"github.com/SXerox007/OrderServiceApp/utils/random"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
-	is "github.com/go-ozzo/ozzo-validation/v4/is"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -40,7 +39,7 @@ func (s *Svc) calculateOrderValue(ctx context.Context, req *order.PlaceOrderRequ
 
 		// quantity check
 		if p.Quantity > pres.Product.Quantity {
-			return nil, status.Error(codes.InvalidArgument, "sorry, but we only have 5 "+string(p.Quantity)+" quantity left of the "+pres.Product.Name)
+			return nil, status.Error(codes.InvalidArgument, "sorry, but we only have "+string(p.Quantity)+" quantity left of the "+pres.Product.Name)
 		}
 
 		// append the orders
@@ -96,15 +95,18 @@ func (s *Svc) PlaceOrder(ctx context.Context, req *order.PlaceOrderRequest) (*or
 // validate the request
 func validate(req *order.PlaceOrder) error {
 	if err := validation.ValidateStruct(req,
-		validation.Field(&req.ProductId, validation.Required, is.Int),
-		validation.Field(&req.Quantity, validation.Required, is.Int, validation.By(func(interface{}) error {
-			if req.Quantity > constants.MAX_QUANTITY {
+		validation.Field(&req.ProductId, validation.Required),
+		validation.Field(&req.Quantity, validation.Required, validation.By(func(v interface{}) error {
+			if v == nil {
+				return nil
+			}
+			if req.Quantity > int32(constants.MAX_QUANTITY) {
 				return status.Error(codes.InvalidArgument, "maximum quantity for an order is limited to 10 units")
 			}
 			return nil
 		})),
 	); err != nil {
-		log.Println("Error:", err)
+		log.Println("Error in validate calculateOrderValue:", err)
 		return status.Error(codes.InvalidArgument, err.Error())
 	}
 	return nil
