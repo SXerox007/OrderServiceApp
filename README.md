@@ -32,9 +32,10 @@ Clone this repository to your local machine.
 Navigate to the project directory: cd OrderServiceApp.
 Install the dependencies: go mod download.
 
-## Usage
-Start the OrderServiceApp server: go run main.go.
-The server will be up and running on localhost:8000.
+## Usage.
+Start the OrderServiceApp server:
+`gRPC`: localhost:50051
+`REST`: localhost:5051
 Use your preferred gRPC client to interact with the available endpoints.
 
 ## MakeFile
@@ -57,7 +58,7 @@ The OrderServiceApp provides the following gRPC  and REST endpoints
 Contributions to OrderServiceApp are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. Follow the contribution guidelines mentioned in the CONTRIBUTING.md file.
 
 ## License
-OrderServiceApp is licensed under the MIT License.
+OrderServiceApp is licensed under the Apache License.
 
 ## Contact
 For any inquiries or feedback, please contact us at sumitthakur769@gmail.com.
